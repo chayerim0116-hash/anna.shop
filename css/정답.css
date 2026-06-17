@@ -1224,6 +1224,99 @@ body{
     font-family: "Noto Sans KR", sans-serif;
 }
 
+/* ── Product Hover Icon (button 구조) ── */
+.product-hover-icon{
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    pointer-events: auto;
+    padding: 0;
+}
+
+.product-hover-icon img{
+    width: 58px;
+    height: 58px;
+    display: block;
+    object-fit: contain;
+    border-radius: 0;
+}
+
+/* cart-btn active: ♥ 빨간 하트 */
+.cart-btn.active{
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.cart-btn.active img{
+    display: none;
+}
+
+.cart-btn.active::before{
+    content: "♥";
+    color: #ff4d5a;
+    font-size: 28px;
+    line-height: 1;
+}
+
+/* ── 인기 검색어 롤링 ── */
+.popular-keyword-rolling{
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #333333;
+    height: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-family: "Noto Sans KR", sans-serif;
+    z-index: 1;
+    opacity: 1;
+}
+
+.popular-keyword-rolling:hover{
+    opacity: 0.7;
+}
+
+.rank-number{
+    font-weight: 700;
+    color: #111111;
+    font-size: 13px;
+}
+
+.rank-text{
+    color: #333333;
+    font-size: 13px;
+}
+
+.popular-keyword-rolling .rolling-inner{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: rollUp 0.35s ease both;
+}
+
+@keyframes rollUp{
+    from{ opacity: 0; transform: translateY(8px); }
+    to{ opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1180px){
+    .popular-keyword-rolling{
+        display: none;
+    }
+}
+
 /* ── Toast ── */
 .anna-toast{
     position: fixed;

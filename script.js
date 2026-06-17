@@ -328,56 +328,117 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCartBadge();
     }
 
-    /* ── 2. BEST 상품 Hover 아이콘 + 4. 좋아요 ── */
+    /* ── 2. BEST 상품 Hover 아이콘 ── */
     function initBestProductHoverIcons() {
-        var likedArr = JSON.parse(localStorage.getItem("anna_liked_products") || "[]");
+        var likedSet = JSON.parse(localStorage.getItem("anna_cart_liked_products") || "[]");
         var bestItems = document.querySelectorAll(".best_item li");
 
+        /* 페이지 로드 시 장바구니 count를 liked 수로 동기화 */
+        localStorage.setItem("anna_cart_count", String(likedSet.length));
+        updateCartBadge();
+
         bestItems.forEach(function (item, index) {
-            var icons = item.querySelectorAll(".best_hover_icon");
-            if (icons.length === 0) return;
+            var viewBtn = item.querySelector(".view-btn");
+            var cartBtn = item.querySelector(".cart-btn");
 
-            var cartIcon = icons[0];
-            cartIcon.setAttribute("role", "button");
-            cartIcon.setAttribute("tabindex", "0");
-            cartIcon.setAttribute("aria-label", "장바구니 담기");
-            cartIcon.addEventListener("click", function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                addToCart();
-            });
-            cartIcon.addEventListener("keydown", function (e) {
-                if (e.key === "Enter" || e.key === " ") { e.preventDefault(); addToCart(); }
-            });
-
-            if (icons.length >= 2) {
-                var likeIcon = icons[1];
-                likeIcon.setAttribute("role", "button");
-                likeIcon.setAttribute("tabindex", "0");
-                likeIcon.setAttribute("aria-label", "좋아요");
-
-                if (likedArr.indexOf(index) !== -1) {
-                    likeIcon.classList.add("is-liked");
-                }
-
-                likeIcon.addEventListener("click", function (e) {
+            /* 첫 번째 아이콘: 자세히보기 */
+            if (viewBtn) {
+                viewBtn.addEventListener("click", function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    var liked = JSON.parse(localStorage.getItem("anna_liked_products") || "[]");
-                    var pos = liked.indexOf(index);
-                    if (pos === -1) {
-                        liked.push(index);
-                        likeIcon.classList.add("is-liked");
-                    } else {
-                        liked.splice(pos, 1);
-                        likeIcon.classList.remove("is-liked");
-                    }
-                    localStorage.setItem("anna_liked_products", JSON.stringify(liked));
-                });
-                likeIcon.addEventListener("keydown", function (e) {
-                    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); likeIcon.click(); }
+                    alert("상품 상세 페이지 준비 중입니다.");
                 });
             }
+
+            /* 두 번째 아이콘: 장바구니 / 하트 토글 */
+            if (cartBtn) {
+                /* 로드 시 active 상태 복원 */
+                if (likedSet.indexOf(index) !== -1) {
+                    cartBtn.classList.add("active");
+                }
+
+                cartBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    var liked = JSON.parse(localStorage.getItem("anna_cart_liked_products") || "[]");
+                    var pos = liked.indexOf(index);
+                    var count = parseInt(localStorage.getItem("anna_cart_count") || "0", 10);
+
+                    if (pos === -1) {
+                        liked.push(index);
+                        count++;
+                        cartBtn.classList.add("active");
+                        showToast("장바구니에 담겼습니다.");
+                    } else {
+                        liked.splice(pos, 1);
+                        count = Math.max(0, count - 1);
+                        cartBtn.classList.remove("active");
+                        showToast("장바구니에서 제거되었습니다.");
+                    }
+
+                    localStorage.setItem("anna_cart_liked_products", JSON.stringify(liked));
+                    localStorage.setItem("anna_cart_count", String(count));
+                    updateCartBadge();
+                });
+            }
+        });
+    }
+
+    /* ── 인기 검색어 롤링 ── */
+    function initPopularKeywordRolling() {
+        var rolling = document.getElementById("popularKeywordRolling");
+        var rankNum = document.getElementById("popularRankNumber");
+        var rankText = document.getElementById("popularRankText");
+        if (!rolling || !rankNum || !rankText) return;
+
+        var popularKeywords = [
+            "린넨 셔츠", "반팔 셔츠", "스트라이프 셔츠", "블라우스", "여름 니트",
+            "와이드 팬츠", "슬랙스", "롱스커트", "미니 스커트", "원피스"
+        ];
+
+        var currentIndex = 0;
+
+        function render(idx) {
+            var inner = rolling.querySelector(".rolling-inner");
+            if (!inner) {
+                inner = document.createElement("span");
+                inner.className = "rolling-inner";
+                rolling.innerHTML = "";
+                rolling.appendChild(inner);
+            }
+
+            /* 애니메이션 재시작 */
+            inner.style.animation = "none";
+            inner.offsetHeight;
+            inner.style.animation = "";
+
+            inner.innerHTML =
+                '<span class="rank-number">' + (idx + 1) + '.</span>' +
+                '<span class="rank-text"> ' + popularKeywords[idx] + '</span>';
+        }
+
+        /* 초기 렌더 */
+        render(0);
+        currentIndex = 1;
+
+        window.setInterval(function () {
+            render(currentIndex);
+            currentIndex = (currentIndex + 1) % popularKeywords.length;
+        }, 3000);
+
+        /* 클릭 시 검색창에 키워드 입력 */
+        rolling.addEventListener("click", function () {
+            var searchInput = document.getElementById("searchInput");
+            if (!searchInput) return;
+            var idx = (currentIndex - 1 + popularKeywords.length) % popularKeywords.length;
+            searchInput.value = popularKeywords[idx];
+            searchInput.focus();
+            searchInput.dispatchEvent(new Event("input"));
+        });
+
+        rolling.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") rolling.click();
         });
     }
 
@@ -475,4 +536,5 @@ document.addEventListener("DOMContentLoaded", function () {
     initBestProductHoverIcons();
     initSearchSuggest();
     initQuickMenuPopups();
+    initPopularKeywordRolling();
 });
