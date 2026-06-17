@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 | 안나앤모드</title>
+    <link href="css/초기화.css" rel="stylesheet" type="text/css">
+    <link href="css/정답.css" rel="stylesheet" type="text/css">
+    <style>
+        .login_main{
+            min-height: calc(100vh - 75px);
+            padding: 20px 20px 32px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            font-family: "Noto Sans KR", sans-serif;
+        }
+
+        .login-container{
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .login-title{
+            margin-bottom: 22px;
+            color: #2b2b2b;
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.15;
+        }
+
+        .login-desc{
+            margin-bottom: 28px;
+            color: #2b2b2b;
+            font-size: 18px;
+            line-height: 1.45;
+        }
+
+        .kakao-login{
+            width: 100%;
+            height: 56px;
+            margin-bottom: 28px;
+            border: 0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            background: #ffe500;
+            color: #222;
+            font-size: 20px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .kakao-login img{
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .member-tabs{
+            width: 100%;
+            height: 52px;
+            margin-bottom: 30px;
+            border-radius: 999px;
+            display: flex;
+            overflow: hidden;
+            background: #f1f1f1;
+        }
+
+        .member-tab{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 999px;
+            background: transparent;
+            color: #333;
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .member-tab.is-active{
+            background-color: #222;
+            color: #fff;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"]{
+            width: 100%;
+            height: 50px;
+            padding: 0 16px;
+            box-sizing: border-box;
+            border: 0;
+            border-bottom: 1px solid #ddd;
+            outline: 0;
+            background: transparent;
+            color: #222;
+            font-size: 16px;
+        }
+
+        .login-options{
+            margin: 18px 0 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .login-options label{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .login-options input{
+            width: 16px;
+            height: 16px;
+            accent-color: #222;
+        }
+
+        .member-login{
+            width: 100%;
+            height: 58px;
+            margin-bottom: 20px;
+            border: 2px solid #222;
+            border-radius: 10px;
+            background: #222;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .login-links{
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .login-links a{
+            color: #333;
+            text-decoration: none;
+        }
+
+        .social-divider{
+            margin-bottom: 14px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .social-login{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .social-login img{
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px){
+            .login_main{
+                padding: 24px 20px 32px;
+            }
+
+            .login-title{
+                font-size: 30px;
+            }
+
+            .login-desc{
+                font-size: 18px;
+            }
+
+            .kakao-login{
+                font-size: 18px;
+            }
+
+            .member-tab{
+                font-size: 16px;
+            }
+
+            .login-links{
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <header class="header">
+            <div class="logo">
+                <h1>
+                    <a href="index.html">
+                        <img src="img2/logo_header_black.png" alt="ANNA" class="header-logo-img">
+                    </a>
+                </h1>
+            </div>
+
+            <button type="button" class="mobile_menu_btn" aria-label="메뉴 열기" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="gnb" aria-label="주요 메뉴">
+                <ul>
+                    <li><a href="#none" data-submenu="MADE">MADE</a></li>
+                    <li><a href="#none">BEST 🩶</a></li>
+                    <li><a href="#none" data-submenu="오늘출발">오늘출발</a></li>
+                    <li><a href="#none">SUMMER 🏖️</a></li>
+                    <li><a href="#none" data-submenu="OUTER">OUTER</a></li>
+                    <li><a href="#none" data-submenu="KNIT">KNIT</a></li>
+                    <li><a href="#none" data-submenu="TOP">TOP</a></li>
+                    <li><a href="#none">BLOUSE</a></li>
+                    <li><a href="#none">BOTTOM</a></li>
+                    <li><a href="#none">DRESS</a></li>
+                    <li><a href="#none">SKIRT</a></li>
+                    <li><a href="#none">SHOES</a></li>
+                    <li><a href="#none" data-submenu="ACC">ACC</a></li>
+                    <li><a href="#none">COMMUNITY</a></li>
+                </ul>
+            </nav>
+            <div class="nav_submenu_bar" aria-label="하위 메뉴"></div>
+
+            <div class="header_util">
+                <form class="search_form" action="#none">
+                    <label for="site_search">Search</label>
+                    <input type="search" id="site_search" placeholder="Search">
+                    <button type="submit" aria-label="검색"></button>
+                </form>
+                <div class="icon_menu">
+                    <a href="#none"><img src="img2/icon1.png" alt="마이페이지"></a>
+                    <div class="login_icon_wrap">
+                        <a href="login.html" class="login_icon"><img src="img2/icon2.png" alt="로그인"></a>
+                        <div class="login_dropdown">
+                            <a href="login.html">로그인</a>
+                            <a href="#none">마이페이지</a>
+                            <a href="#none">주문내역 조회</a>
+                            <a href="#none">관심상품 (0)</a>
+                            <a href="#none">최근 본 상품 (0)</a>
+                            <a href="#none">개인결제</a>
+                        </div>
+                    </div>
+                    <a href="#none"><img src="img2/icon3.png" alt="장바구니"></a>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main class="login_main">
+        <section class="login-container">
+            <h1 class="login-title">로그인</h1>
+            <p class="login-desc">
+                아이디와 비밀번호 입력하기 귀찮으시죠?<br>
+                1초 회원가입으로 입력없이 간편하게 로그인 하세요.
+            </p>
+
+            <button type="button" class="kakao-login">
+                <img src="side_icon/side_icon_kakao.png" alt="">
+                카카오 1초 로그인/회원가입
+            </button>
+
+            <div class="member-tabs" role="tablist" aria-label="로그인 유형">
+                <button type="button" class="member-tab is-active" data-login-tab="member" role="tab" aria-selected="true">기존 회원이세요?</button>
+                <button type="button" class="member-tab" data-login-tab="guest" role="tab" aria-selected="false">비회원 주문조회</button>
+            </div>
+
+            <form class="login-form" action="#none">
+                <input type="text" placeholder="아이디" data-member-placeholder="아이디" data-guest-placeholder="주문자명">
+                <input type="password" placeholder="비밀번호" data-member-placeholder="비밀번호" data-guest-placeholder="주문번호">
+
+                <div class="login-options">
+                    <label><input type="checkbox"> 아이디 저장</label>
+                    <label><input type="checkbox"> 자동로그인</label>
+                </div>
+
+                <button type="button" class="member-login">기존 회원 로그인</button>
+            </form>
+
+            <div class="login-links">
+                <div>
+                    <a href="#none">아이디/비밀번호 찾기</a>
+                    <span>|</span>
+                    <a href="#none">휴면해제</a>
+                </div>
+                <a href="#none">회원가입</a>
+            </div>
+
+            <p class="social-divider">또는</p>
+
+            <div class="social-login">
+                <a href="#none"><img src="login/naver.png" alt="네이버 로그인"></a>
+                <a href="#none"><img src="login/gogle.png" alt="구글 로그인"></a>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

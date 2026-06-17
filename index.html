@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안나앤모드</title>
+    <link href="css/초기화.css" rel="stylesheet" type="text/css">
+    <link href="css/정답.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- 전체감싸는 박스 -->
+    <div id="wrap">
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="logo">
+                <h1>
+                    <a href="#none">
+                        <img src="img2/logo_header_black.png" alt="ANNA" class="header-logo-img">
+                    </a>
+                </h1>
+            </div>
+
+            <button type="button" class="mobile_menu_btn" aria-label="메뉴 열기" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="gnb" aria-label="주요 메뉴">
+                <ul>
+                    <li><a href="#none" data-submenu="MADE">MADE</a></li>
+                    <li><a href="#none">BEST 🩶</a></li>
+                    <li><a href="#none" data-submenu="오늘출발">오늘출발</a></li>
+                    <li><a href="#none">SUMMER 🏖️</a></li>
+                    <li><a href="#none" data-submenu="OUTER">OUTER</a></li>
+                    <li><a href="#none" data-submenu="KNIT">KNIT</a></li>
+                    <li><a href="#none" data-submenu="TOP">TOP</a></li>
+                    <li><a href="#none">BLOUSE</a></li>
+                    <li><a href="#none" data-submenu="PANTS">PANTS</a></li>
+                    <li><a href="#none">DRESS</a></li>
+                    <li><a href="#none">SKIRT</a></li>
+                    <li><a href="#none">SHOES</a></li>
+                    <li><a href="#none" data-submenu="ACC">ACC</a></li>
+                    <li><a href="#none">COMMUNITY</a></li>
+                </ul>
+            </nav>
+            <div class="nav_submenu_bar" aria-label="하위 메뉴"></div>
+
+            <div class="header_util">
+                <form class="search_form" action="#none">
+                    <label for="site_search">Search</label>
+                    <input type="search" id="site_search" placeholder="Search">
+                    <button type="submit" aria-label="검색"></button>
+                </form>
+                <div class="icon_menu">
+                    <a href="#none"><img src="img2/icon1.png" alt="마이페이지"></a>
+                    <div class="login_icon_wrap">
+                        <a href="login.html" class="login_icon"><img src="img2/icon2.png" alt="로그인"></a>
+                        <div class="login_dropdown">
+                            <a href="login.html">로그인</a>
+                            <a href="#none">마이페이지</a>
+                            <a href="#none">주문내역 조회</a>
+                            <a href="#none">관심상품 (0)</a>
+                            <a href="#none">최근 본 상품 (0)</a>
+                            <a href="#none">개인결제</a>
+                        </div>
+                    </div>
+                    <a href="#none"><img src="img2/icon3.png" alt="장바구니"></a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 메인광고 -->
+        <section class="main_ad" aria-label="메인 배너">
+            <div class="hero_track">
+                <article class="hero_slide">
+                    <img src="img2/banner1.jpeg" alt="메인 배너 1">
+                </article>
+                <article class="hero_slide">
+                    <img src="img2/banner2.jpeg" alt="메인 배너 2">
+                </article>
+                <article class="hero_slide">
+                    <img src="img2/banner3.jpeg" alt="메인 배너 3">
+                </article>
+                <article class="hero_slide">
+                    <img src="img2/banner4.jpeg" alt="메인 배너 4">
+                </article>
+                <article class="hero_slide">
+                    <img src="img2/banner5.jpeg" alt="메인 배너 5">
+                </article>
+            </div>
+            <button type="button" class="hero_arrow hero_prev" aria-label="이전 배너">‹</button>
+            <button type="button" class="hero_arrow hero_next" aria-label="다음 배너">›</button>
+            <div class="hero_dots" aria-label="배너 선택">
+                <button type="button" class="active" aria-label="1번 배너"></button>
+                <button type="button" aria-label="2번 배너"></button>
+                <button type="button" aria-label="3번 배너"></button>
+                <button type="button" aria-label="4번 배너"></button>
+                <button type="button" aria-label="5번 배너"></button>
+            </div>
+        </section>
+
+        <!-- 서브광고 -->
+        <div class="sub_ad">
+            <div class="sub_ad_title">
+                <h3>NEW ARRIVAL</h3>
+                <p>오늘의 신상</p>
+            </div>
+            <div class="sub_ad_con">
+                <ul class="clearfix">
+                    <li>
+                        <a href="#none">
+                            <img src="img/img_subad/1.gif" alt="신상품에 대한 상세한 설명">
+                            <h4>상품제목</h4>
+                            <p>이 상품은 신상품입니다</p>
+                            <span>25,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <img src="img/img_subad/2.gif" alt="신상품에 대한 상세한 설명">
+                            <h4>상품제목</h4>
+                            <p>이 상품은 신상품입니다</p>
+                            <span>25,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <img src="img/img_subad/3.gif" alt="신상품에 대한 상세한 설명">
+                            <h4>상품제목</h4>
+                            <p>이 상품은 신상품입니다</p>
+                            <span>25,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <img src="img/img_subad/4.gif" alt="신상품에 대한 상세한 설명">
+                            <h4>상품제목</h4>
+                            <p>이 상품은 신상품입니다</p>
+                            <span>25,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <img src="img/img_subad/5.gif" alt="신상품에 대한 상세한 설명">
+                            <h4>상품제목</h4>
+                            <p>이 상품은 신상품입니다</p>
+                            <span>25,000원</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 베스트 상품 -->
+        <div class="best">
+            <div class="best_title">
+                <h3>BEST</h3>
+                <p>실시간 인기 상품</p>
+            </div>
+            <div class="best_item">
+                <ul class="clearfix">
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/1.gif" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목1</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/2.gif" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목2</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/3.gif" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목3</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/4.gif" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목4</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/5.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목5</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/6.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목6</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/7.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목7</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/8.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목8</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/9.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목9</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/10.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목10</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/11.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목11</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/12.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목12</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/13.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목13</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/14.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목14</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/15.webp" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목15</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <span class="best_img_wrap">
+
+                                <img src="img/img_best/16.gif" alt="상품에 대한 상세한 설명">
+
+                                <span class="best_img_overlay">
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/1.png" alt=""></span>
+
+                                    <span class="best_hover_icon"><img src="img2/img_icon/2.png" alt=""></span>
+
+                                </span>
+
+                            </span>
+                            <h4>상품제목16</h4>
+                            <p>상품에 대한 설명입니다</p>
+                            <span>30,000원</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 푸터 -->
+        <div class="footer">
+            <p>Copyright ⓒ Anna.shop</p>
+        </div>
+    </div>
+    <div class="quick-fixed" aria-label="빠른 이동 버튼">
+        <button type="button" class="quick-btn quick-top" aria-label="맨 위로 이동"></button>
+        <button type="button" class="quick-btn quick-bottom" aria-label="맨 아래로 이동"></button>
+        <a href="#none" class="quick-kakao" aria-label="카카오톡 상담">
+            <img src="side_icon/side_icon_kakao.png" alt="카카오 TALK">
+        </a>
+    </div>
+    <div class="layer-popup" aria-label="이벤트 안내 팝업">
+        <img src="popup.png" alt="이벤트 안내">
+        <button type="button" class="layer-popup-close" aria-label="팝업 닫기">×</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
