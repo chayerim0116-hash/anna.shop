@@ -711,10 +711,29 @@ body{
     object-fit: contain;
 }
 
+.quick-ask{
+    width: 40px;
+    height: 40px;
+    display: block;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.quick-ask img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: block;
+    object-fit: contain;
+}
+
 .quick-btn:hover,
 .quick-btn:focus-visible,
 .quick-kakao:hover,
-.quick-kakao:focus-visible{
+.quick-kakao:focus-visible,
+.quick-ask:hover,
+.quick-ask:focus-visible{
     opacity: 0.9;
     transform: translateY(-2px);
 }
@@ -1016,7 +1035,9 @@ body{
 
     .quick-btn,
     .quick-kakao,
-    .quick-kakao img{
+    .quick-kakao img,
+    .quick-ask,
+    .quick-ask img{
         width: 36px;
         height: 36px;
     }
@@ -1084,6 +1105,7 @@ body{
     .mobile_menu_btn span,
     .quick-btn,
     .quick-kakao,
+    .quick-ask,
     .layer-popup{
         transition: none;
         animation: none;
