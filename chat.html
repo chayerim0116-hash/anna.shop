@@ -74,6 +74,24 @@
             color: #ffffff;
         }
 
+        .btn-reset-chat {
+            height: 34px;
+            padding: 0 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.25);
+            background: transparent;
+            color: rgba(255,255,255,0.65);
+            font-size: 13px;
+            font-family: "Noto Sans KR", sans-serif;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-reset-chat:hover {
+            border-color: rgba(255,255,255,0.5);
+            color: #ffffff;
+        }
+
         /* 채팅 메시지 영역 */
         .chat-body {
             flex: 1;
@@ -346,6 +364,7 @@
             <div class="chat-response-info">보통 6시간 내 응답, 응답률 98%</div>
         </div>
         <div class="chat-header-icons">
+            <button class="btn-reset-chat" type="button" id="btnResetChat">대화 초기화</button>
             <span title="알림">🔔</span>
             <span title="메뉴">☰</span>
         </div>
@@ -524,6 +543,17 @@
     });
 
     btnSend.addEventListener('click', sendMessage);
+
+    /* ── 대화 초기화 ── */
+    var btnReset = document.getElementById('btnResetChat');
+    if (btnReset) {
+        btnReset.addEventListener('click', function () {
+            if (!confirm('대화 내용을 모두 삭제할까요?')) return;
+            localStorage.removeItem(STORAGE_KEY);
+            chatBody.innerHTML = '';
+            renderWelcome();
+        });
+    }
 
     init();
 </script>

@@ -277,4 +277,179 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
+
+    /* ── 1. Header Scroll Effect ── */
+    function initHeaderScrollEffect() {
+        var hdr = document.querySelector(".header");
+        if (!hdr) return;
+        window.addEventListener("scroll", function () {
+            if (window.scrollY >= 80) {
+                hdr.classList.add("scrolled");
+            } else {
+                hdr.classList.remove("scrolled");
+            }
+        }, { passive: true });
+    }
+
+    /* ── Toast ── */
+    function showToast(msg) {
+        var old = document.getElementById("anna-toast");
+        if (old) old.remove();
+        var el = document.createElement("div");
+        el.id = "anna-toast";
+        el.className = "anna-toast";
+        el.textContent = msg;
+        document.body.appendChild(el);
+        window.setTimeout(function () { el.classList.add("show"); }, 10);
+        window.setTimeout(function () {
+            el.classList.remove("show");
+            window.setTimeout(function () { if (el.parentNode) el.remove(); }, 300);
+        }, 1500);
+    }
+
+    /* ── 3. Cart Count ── */
+    function updateCartBadge() {
+        var count = parseInt(localStorage.getItem("anna_cart_count") || "0", 10);
+        var badge = document.getElementById("cartBadge");
+        if (!badge) return;
+        badge.textContent = count;
+        badge.style.display = count > 0 ? "flex" : "none";
+    }
+
+    function addToCart() {
+        var count = parseInt(localStorage.getItem("anna_cart_count") || "0", 10);
+        count++;
+        localStorage.setItem("anna_cart_count", String(count));
+        updateCartBadge();
+        showToast("장바구니에 담겼습니다.");
+    }
+
+    function initCartCount() {
+        updateCartBadge();
+    }
+
+    /* ── 2. BEST 상품 Hover 아이콘 + 4. 좋아요 ── */
+    function initBestProductHoverIcons() {
+        var likedArr = JSON.parse(localStorage.getItem("anna_liked_products") || "[]");
+        var bestItems = document.querySelectorAll(".best_item li");
+
+        bestItems.forEach(function (item, index) {
+            var icons = item.querySelectorAll(".best_hover_icon");
+            if (icons.length === 0) return;
+
+            var cartIcon = icons[0];
+            cartIcon.setAttribute("role", "button");
+            cartIcon.setAttribute("tabindex", "0");
+            cartIcon.setAttribute("aria-label", "장바구니 담기");
+            cartIcon.addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                addToCart();
+            });
+            cartIcon.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") { e.preventDefault(); addToCart(); }
+            });
+
+            if (icons.length >= 2) {
+                var likeIcon = icons[1];
+                likeIcon.setAttribute("role", "button");
+                likeIcon.setAttribute("tabindex", "0");
+                likeIcon.setAttribute("aria-label", "좋아요");
+
+                if (likedArr.indexOf(index) !== -1) {
+                    likeIcon.classList.add("is-liked");
+                }
+
+                likeIcon.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var liked = JSON.parse(localStorage.getItem("anna_liked_products") || "[]");
+                    var pos = liked.indexOf(index);
+                    if (pos === -1) {
+                        liked.push(index);
+                        likeIcon.classList.add("is-liked");
+                    } else {
+                        liked.splice(pos, 1);
+                        likeIcon.classList.remove("is-liked");
+                    }
+                    localStorage.setItem("anna_liked_products", JSON.stringify(liked));
+                });
+                likeIcon.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); likeIcon.click(); }
+                });
+            }
+        });
+    }
+
+    /* ── 5. 실시간 검색 자동 추천 ── */
+    function initSearchSuggest() {
+        var searchInput = document.getElementById("site_search");
+        var suggest = document.getElementById("searchSuggest");
+        if (!searchInput || !suggest) return;
+
+        var keywords = [
+            "린넨 셔츠", "반팔 셔츠", "스트라이프 셔츠", "블라우스", "여름 니트",
+            "와이드 팬츠", "슬랙스", "롱스커트", "미니 스커트", "원피스",
+            "가디건", "자켓", "샌들", "가방", "데님 팬츠"
+        ];
+
+        function renderSuggest(val) {
+            if (!val) { suggest.style.display = "none"; return; }
+            var filtered = keywords.filter(function (k) { return k.indexOf(val) !== -1; }).slice(0, 5);
+
+            if (filtered.length === 0) {
+                suggest.innerHTML = '<div class="search-suggest-item no-result">추천 검색어가 없습니다.</div>';
+            } else {
+                suggest.innerHTML = filtered.map(function (k) {
+                    return '<div class="search-suggest-item" tabindex="0" role="option">' + k + '</div>';
+                }).join("");
+                suggest.querySelectorAll(".search-suggest-item").forEach(function (el) {
+                    el.addEventListener("click", function () {
+                        searchInput.value = el.textContent;
+                        suggest.style.display = "none";
+                    });
+                    el.addEventListener("keydown", function (e) {
+                        if (e.key === "Enter") { searchInput.value = el.textContent; suggest.style.display = "none"; }
+                    });
+                });
+            }
+            suggest.style.display = "block";
+        }
+
+        searchInput.addEventListener("input", function () {
+            renderSuggest(searchInput.value.trim());
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!searchInput.contains(e.target) && !suggest.contains(e.target)) {
+                suggest.style.display = "none";
+            }
+        });
+    }
+
+    /* ── Quick Menu Popup ── */
+    function initQuickMenuPopups() {
+        var kakaoLink = document.querySelector(".quick-kakao");
+        var askLink = document.querySelector(".quick-ask");
+
+        if (kakaoLink) {
+            kakaoLink.addEventListener("click", function (e) {
+                e.preventDefault();
+                window.open("kakao-login.html", "kakaoLoginWindow", "width=520,height=760,left=200,top=100,resizable=yes,scrollbars=yes");
+            });
+        }
+
+        if (askLink) {
+            askLink.addEventListener("click", function (e) {
+                e.preventDefault();
+                window.open("chat.html", "chatWindow", "width=480,height=760,left=760,top=80,resizable=yes,scrollbars=no");
+            });
+        }
+    }
+
+    initHeaderScrollEffect();
+    initCartCount();
+    initBestProductHoverIcons();
+    initSearchSuggest();
+    initQuickMenuPopups();
 });
