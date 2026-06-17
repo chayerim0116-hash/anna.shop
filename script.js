@@ -383,46 +383,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ── 5. 실시간 검색 자동 추천 ── */
     function initSearchSuggest() {
-        var searchInput = document.getElementById("site_search");
+        var searchInput = document.getElementById("searchInput");
         var suggest = document.getElementById("searchSuggest");
-        if (!searchInput || !suggest) return;
+        if (!searchInput || !suggest) {
+            return;
+        }
 
-        var keywords = [
+        var searchKeywords = [
             "린넨 셔츠", "반팔 셔츠", "스트라이프 셔츠", "블라우스", "여름 니트",
             "와이드 팬츠", "슬랙스", "롱스커트", "미니 스커트", "원피스",
             "가디건", "자켓", "샌들", "가방", "데님 팬츠"
         ];
 
+        function closeSuggest() {
+            suggest.classList.remove("active");
+        }
+
+        function openSuggest() {
+            suggest.classList.add("active");
+        }
+
         function renderSuggest(val) {
-            if (!val) { suggest.style.display = "none"; return; }
-            var filtered = keywords.filter(function (k) { return k.indexOf(val) !== -1; }).slice(0, 5);
+            if (!val) { closeSuggest(); return; }
+
+            var lower = val.toLowerCase();
+            var filtered = searchKeywords.filter(function (k) {
+                return k.toLowerCase().indexOf(lower) !== -1;
+            }).slice(0, 5);
 
             if (filtered.length === 0) {
-                suggest.innerHTML = '<div class="search-suggest-item no-result">추천 검색어가 없습니다.</div>';
+                suggest.innerHTML = '<div class="search-suggest-empty">추천 검색어가 없습니다.</div>';
             } else {
                 suggest.innerHTML = filtered.map(function (k) {
                     return '<div class="search-suggest-item" tabindex="0" role="option">' + k + '</div>';
                 }).join("");
+
                 suggest.querySelectorAll(".search-suggest-item").forEach(function (el) {
-                    el.addEventListener("click", function () {
+                    el.addEventListener("mousedown", function (e) {
+                        e.preventDefault();
                         searchInput.value = el.textContent;
-                        suggest.style.display = "none";
+                        closeSuggest();
                     });
                     el.addEventListener("keydown", function (e) {
-                        if (e.key === "Enter") { searchInput.value = el.textContent; suggest.style.display = "none"; }
+                        if (e.key === "Enter") {
+                            searchInput.value = el.textContent;
+                            closeSuggest();
+                        }
                     });
                 });
             }
-            suggest.style.display = "block";
+            openSuggest();
         }
 
         searchInput.addEventListener("input", function () {
             renderSuggest(searchInput.value.trim());
         });
 
+        searchInput.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") { closeSuggest(); }
+        });
+
         document.addEventListener("click", function (e) {
             if (!searchInput.contains(e.target) && !suggest.contains(e.target)) {
-                suggest.style.display = "none";
+                closeSuggest();
             }
         });
     }

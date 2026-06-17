@@ -590,20 +590,19 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    background: #ffffff;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    background: transparent;
+    box-shadow: none;
     border: none;
     cursor: pointer;
     pointer-events: auto;
-    transition: background 0.2s ease;
 }
 
 .best_hover_icon img{
-    width: 28px;
-    height: 28px;
+    width: 58px;
+    height: 58px;
     display: block;
     object-fit: contain;
+    border-radius: 0;
 }
 
 .best_img_wrap:hover::after,
@@ -1171,21 +1170,37 @@ body{
 
 /* ── Best Hover Icon - liked ── */
 .best_hover_icon.is-liked{
-    background: #ff4d5a;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.best_hover_icon.is-liked img{
+    display: none;
+}
+
+.best_hover_icon.is-liked::before{
+    content: "♥";
+    color: #ff4d5a;
+    font-size: 28px;
+    line-height: 1;
 }
 
 /* ── Search Suggest ── */
 .search-suggest{
     display: none;
     position: absolute;
-    top: calc(100% + 4px);
+    top: calc(100% + 8px);
     left: 0;
     width: 100%;
     background: #ffffff;
     border: 1px solid #e5e5e5;
-    z-index: 2000;
+    z-index: 3000;
     padding: 8px 0;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.search-suggest.active{
+    display: block;
 }
 
 .search-suggest-item{
@@ -1202,9 +1217,11 @@ body{
     outline: none;
 }
 
-.search-suggest-item.no-result{
-    cursor: default;
+.search-suggest-empty{
+    padding: 10px 14px;
+    font-size: 14px;
     color: #999999;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 /* ── Toast ── */
