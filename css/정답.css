@@ -25,9 +25,9 @@ body{
     justify-content: space-between;
     gap: 24px;
     background-color: #f6f4ee;
-    border: 0;
+    border-bottom: 0;
     box-shadow: none;
-    transition: height 0.3s ease;
+    transition: height 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logo{
@@ -1132,12 +1132,19 @@ body{
 /* ── Header Scroll Effect ── */
 .header.scrolled{
     height: 60px;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
 }
 
 .header.scrolled .logo,
 .header.scrolled .logo h1,
 .header.scrolled .logo a{
     height: 60px;
+}
+
+.header.scrolled .nav_submenu_bar{
+    top: 60px;
 }
 
 /* ── Cart Badge ── */
