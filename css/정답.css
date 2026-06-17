@@ -485,17 +485,6 @@ body{
     filter: brightness(1.03);
 }
 
-/* ── 상품 카드 hover lift ── */
-.sub_ad_con li,
-.best_item li{
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.sub_ad_con li:hover,
-.best_item li:hover{
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-}
 
 /* ── NEW ARRIVAL 카드 텍스트 ── */
 .sub_ad_con li a{
