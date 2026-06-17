@@ -485,26 +485,78 @@ body{
     filter: brightness(1.03);
 }
 
-.sub_ad_con h4, .sub_ad_con p, .sub_ad_con span{
-    line-height: 30px;
+/* ── NEW ARRIVAL 카드 텍스트 ── */
+.sub_ad_con .card-info{
+    padding: 14px 2px 0;
 }
 
 .sub_ad_con h4{
-    font-size: 16px;
-    font-weight: 500;
-    color: #222;
-}
-
-.sub_ad_con p{
     font-size: 14px;
-    font-weight: 400;
-    color: #969696;
+    font-weight: 500;
+    color: #111111;
+    letter-spacing: -0.01em;
+    line-height: 1.45;
+    margin: 0 0 5px;
+    transition: text-decoration 0.2s ease;
 }
 
-.sub_ad_con span{
-    font-size: 18px;
+.sub_ad_con .card-info p{
+    font-size: 12px;
+    font-weight: 400;
+    color: #aaaaaa;
+    line-height: 1.4;
+    letter-spacing: 0;
+    margin: 0 0 10px;
+}
+
+.sub_ad_con .card-price{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sub_ad_con .price-original{
+    font-size: 12px;
+    font-weight: 400;
+    color: #cccccc;
+    text-decoration: line-through;
+    line-height: 1;
+}
+
+.sub_ad_con .price-sale{
+    font-size: 15px;
+    font-weight: 700;
+    color: #111111;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.sub_ad_con .price-rate{
+    font-size: 12px;
     font-weight: 600;
-    color:#222;
+    color: #d63031;
+    line-height: 1;
+}
+
+/* NEW 배지 */
+.card-badge{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #ffffff;
+    background: #111111;
+    letter-spacing: 0.08em;
+    padding: 5px 8px;
+    line-height: 1;
+    z-index: 2;
+}
+
+/* hover 시 상품명 언더라인 */
+.sub_ad_con li a:hover h4{
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .best{
