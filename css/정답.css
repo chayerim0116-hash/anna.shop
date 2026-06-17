@@ -481,7 +481,7 @@ body{
 }
 
 .sub_ad_con li:hover .new-arrival-img-wrap img{
-    transform: scale(1.1);
+    transform: scale(1.5);
     filter: brightness(1.03);
 }
 
