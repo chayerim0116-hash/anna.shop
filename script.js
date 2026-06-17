@@ -450,6 +450,20 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        var rolling = document.getElementById("popularKeywordRolling");
+
+        function showRolling() {
+            if (rolling) rolling.classList.remove("hidden");
+        }
+        function hideRolling() {
+            if (rolling) rolling.classList.add("hidden");
+        }
+
+        searchInput.addEventListener("focus", hideRolling);
+        searchInput.addEventListener("blur", function () {
+            if (!searchInput.value.trim()) showRolling();
+        });
+
         var searchKeywords = [
             "린넨 셔츠", "반팔 셔츠", "스트라이프 셔츠", "블라우스", "여름 니트",
             "와이드 팬츠", "슬랙스", "롱스커트", "미니 스커트", "원피스",
@@ -497,7 +511,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         searchInput.addEventListener("input", function () {
-            renderSuggest(searchInput.value.trim());
+            var val = searchInput.value.trim();
+            if (val) {
+                hideRolling();
+            } else {
+                showRolling();
+            }
+            renderSuggest(val);
         });
 
         searchInput.addEventListener("keydown", function (e) {
