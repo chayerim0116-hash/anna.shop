@@ -481,32 +481,49 @@ body{
 }
 
 .sub_ad_con li:hover .new-arrival-img-wrap img{
-    transform: scale(1.5);
+    transform: scale(1.1);
     filter: brightness(1.03);
 }
 
+/* ── 상품 카드 hover lift ── */
+.sub_ad_con li,
+.best_item li{
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.sub_ad_con li:hover,
+.best_item li:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
 /* ── NEW ARRIVAL 카드 텍스트 ── */
+.sub_ad_con li a{
+    text-decoration: none;
+    color: inherit;
+}
+
 .sub_ad_con .card-info{
     padding: 14px 2px 0;
 }
 
 .sub_ad_con h4{
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     color: #111111;
-    letter-spacing: -0.01em;
-    line-height: 1.45;
+    letter-spacing: -0.2px;
+    line-height: 1.5;
     margin: 0 0 5px;
-    transition: text-decoration 0.2s ease;
+    text-decoration: none !important;
 }
 
 .sub_ad_con .card-info p{
-    font-size: 12px;
-    font-weight: 400;
-    color: #aaaaaa;
-    line-height: 1.4;
-    letter-spacing: 0;
+    font-size: 13px;
+    font-weight: 300;
+    color: #8a8a8a;
+    line-height: 1.5;
     margin: 0 0 10px;
+    text-decoration: none !important;
 }
 
 .sub_ad_con .card-price{
@@ -516,26 +533,27 @@ body{
 }
 
 .sub_ad_con .price-original{
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 400;
-    color: #cccccc;
+    color: #b5b5b5;
     text-decoration: line-through;
     line-height: 1;
 }
 
 .sub_ad_con .price-sale{
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     color: #111111;
-    letter-spacing: -0.02em;
     line-height: 1;
+    text-decoration: none !important;
 }
 
 .sub_ad_con .price-rate{
-    font-size: 12px;
-    font-weight: 600;
-    color: #d63031;
+    font-size: 13px;
+    font-weight: 700;
+    color: #d94a4a;
     line-height: 1;
+    text-decoration: none !important;
 }
 
 /* NEW 배지 */
@@ -551,12 +569,6 @@ body{
     padding: 5px 8px;
     line-height: 1;
     z-index: 2;
-}
-
-/* hover 시 상품명 언더라인 */
-.sub_ad_con li a:hover h4{
-    text-decoration: underline;
-    text-underline-offset: 3px;
 }
 
 .best{
@@ -681,26 +693,62 @@ body{
     transform: translateY(0);
 }
 
-.best h4, .best p, .best_item li > a > span:not(.best_img_wrap){
-    line-height: 30px;
+.best_item li a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.best .card-info{
+    padding: 14px 2px 0;
 }
 
 .best h4{
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    color: #222;
+    color: #111111;
+    letter-spacing: -0.2px;
+    line-height: 1.5;
+    margin: 0 0 5px;
+    text-decoration: none !important;
 }
 
 .best p{
-    font-size: 14px;
-    font-weight: 400;
-    color: #969696;
+    font-size: 13px;
+    font-weight: 300;
+    color: #8a8a8a;
+    line-height: 1.5;
+    margin: 0 0 10px;
+    text-decoration: none !important;
 }
 
-.best_item li > a > span:not(.best_img_wrap){
-    font-size: 18px;
-    font-weight: 600;
-    color:#222;
+.best .card-price{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.best .price-original{
+    font-size: 13px;
+    font-weight: 400;
+    color: #b5b5b5;
+    text-decoration: line-through;
+    line-height: 1;
+}
+
+.best .price-sale{
+    font-size: 16px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1;
+    text-decoration: none !important;
+}
+
+.best .price-rate{
+    font-size: 13px;
+    font-weight: 700;
+    color: #d94a4a;
+    line-height: 1;
+    text-decoration: none !important;
 }
 
 .footer{
