@@ -467,8 +467,22 @@ body{
     margin-left: 0;
 }
 
-.sub_ad_con li img{
+.new-arrival-img-wrap{
+    overflow: hidden;
+    position: relative;
+}
+
+.new-arrival-img-wrap img{
     width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.sub_ad_con li:hover .new-arrival-img-wrap img{
+    transform: scale(1.1);
+    filter: brightness(1.03);
 }
 
 .sub_ad_con h4, .sub_ad_con p, .sub_ad_con span{
