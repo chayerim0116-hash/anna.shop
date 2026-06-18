@@ -17,13 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
     var loginTabs = document.querySelectorAll(".member-tab[data-login-tab]");
     var loginInputs = document.querySelectorAll(".login-form input[data-member-placeholder]");
     var currentIndex = 0;
-    var autoplayId;
-    var autoplayDelay = 3000;
     var quickHideTimer;
     var slideCount = slides.length;
-    var isTransitioning = false;
     var openQuickView = null;
-    var transitionEndTimer;
+    var autoSlideTimer = null;
+    var isResetting = false;
     var submenuData = {
         "오늘출발": ["PANTS", "TOP", "DRESS&SKIRT", "OUTER"],
         "MADE": ["A.MONMENT", "PANTS", "TOP", "DRESS&SKIRT"],
@@ -34,59 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "ACC": ["SHOES", "BAG", "ETC", "HAT/CAP"]
     };
 
-    function updateSlider() {
-        if (!track) return;
-
-        track.style.transform = "translateX(-" + currentIndex * 100 + "%)";
-
-        dots.forEach(function (dot, index) {
-            dot.classList.toggle("active", index === currentIndex % slideCount);
-        });
-    }
-
-    function goToSlide(index) {
-        if (isTransitioning) return;
-
-        isTransitioning = true;
-        clearTimeout(transitionEndTimer);
-        transitionEndTimer = setTimeout(function () {
-            if (isTransitioning) {
-                isTransitioning = false;
-                if (currentIndex === slideCount) {
-                    track.style.transition = "none";
-                    currentIndex = 0;
-                    updateSlider();
-                }
-            }
-        }, 800);
-
-        currentIndex = index;
-        track.style.transition = "transform 0.6s ease-in-out";
-        updateSlider();
-    }
-
-    function nextSlide() {
-        goToSlide(currentIndex + 1);
-    }
-
-    function prevSlide() {
-        if (isTransitioning || currentIndex === 0) return;
-        goToSlide(currentIndex - 1);
-    }
-
-    function stopAutoplay() {
-        window.clearInterval(autoplayId);
-    }
-
-    function startAutoplay() {
-        stopAutoplay();
-        autoplayId = window.setInterval(nextSlide, autoplayDelay);
-    }
-
-    function restartAutoplay() {
-        stopAutoplay();
-        startAutoplay();
-    }
 
     function showQuickArrows() {
         if (!quickFixed) return;
@@ -157,80 +102,106 @@ document.addEventListener("DOMContentLoaded", function () {
         firstClone.setAttribute("aria-hidden", "true");
         track.appendChild(firstClone);
 
-        track.addEventListener("transitionend", function (e) {
-            /* 자식 요소의 transitionend 버블링 무시 */
-            if (e.target !== track || e.propertyName !== "transform") return;
+        function updateSlidePosition() {
+            track.style.transform = "translateX(-" + currentIndex * 100 + "%)";
+        }
 
-            clearTimeout(transitionEndTimer);
+        function updateIndicator() {
+            dots.forEach(function (dot, index) {
+                dot.classList.toggle("active", index === currentIndex % slideCount);
+            });
+        }
 
-            if (currentIndex === slideCount) {
-                track.style.transition = "none";
-                currentIndex = 0;
-                updateSlider();
-                track.offsetHeight;
+        function showSlide(index) {
+            currentIndex = index;
+            track.style.transition = "transform 0.6s ease-in-out";
+            updateSlidePosition();
+            updateIndicator();
+        }
+
+        function nextSlide() {
+            if (isResetting) return;
+            var next = currentIndex + 1;
+            showSlide(next);
+            if (next >= slideCount) {
+                isResetting = true;
+                setTimeout(function () {
+                    track.style.transition = "none";
+                    currentIndex = 0;
+                    updateSlidePosition();
+                    track.offsetHeight;
+                    isResetting = false;
+                }, 700);
             }
+        }
 
-            isTransitioning = false;
-        });
+        function prevSlide() {
+            if (isResetting) return;
+            if (currentIndex === 0) {
+                track.style.transition = "none";
+                currentIndex = slideCount;
+                updateSlidePosition();
+                track.offsetHeight;
+                currentIndex = slideCount - 1;
+                track.style.transition = "transform 0.6s ease-in-out";
+                updateSlidePosition();
+                updateIndicator();
+            } else {
+                showSlide(currentIndex - 1);
+            }
+        }
+
+        function startAutoSlide() {
+            if (autoSlideTimer) clearInterval(autoSlideTimer);
+            autoSlideTimer = setInterval(nextSlide, 3000);
+        }
+
+        function resetAutoSlide() {
+            if (autoSlideTimer) clearInterval(autoSlideTimer);
+            startAutoSlide();
+        }
 
         if (nextButton) {
             nextButton.addEventListener("click", function () {
                 nextSlide();
-                restartAutoplay();
+                resetAutoSlide();
             });
         }
 
         if (prevButton) {
             prevButton.addEventListener("click", function () {
-                if (currentIndex === 0) {
-                    if (isTransitioning) return;
-
-                    track.style.transition = "none";
-                    currentIndex = slideCount;
-                    updateSlider();
-                    track.offsetHeight;
-                    track.style.transition = "transform 0.6s ease-in-out";
-                    prevSlide();
-                } else {
-                    prevSlide();
-                }
-                restartAutoplay();
+                prevSlide();
+                resetAutoSlide();
             });
         }
 
         dots.forEach(function (dot, index) {
             dot.addEventListener("click", function () {
-                if (isTransitioning) return;
-                if (index === currentIndex % slideCount) {
-                    restartAutoplay();
-                    return;
-                }
-
-                isTransitioning = true;
-                currentIndex = index;
-                track.style.transition = "transform 0.6s ease-in-out";
-                updateSlider();
-                restartAutoplay();
+                if (isResetting) return;
+                showSlide(index);
+                resetAutoSlide();
             });
         });
 
-        slider.addEventListener("mouseenter", stopAutoplay);
-        slider.addEventListener("mouseleave", startAutoplay);
+        slider.addEventListener("mouseenter", function () {
+            if (autoSlideTimer) clearInterval(autoSlideTimer);
+        });
+        slider.addEventListener("mouseleave", startAutoSlide);
 
         slider.addEventListener("keydown", function (event) {
             if (event.key === "ArrowRight") {
                 nextSlide();
-                restartAutoplay();
+                resetAutoSlide();
             }
-
             if (event.key === "ArrowLeft") {
                 prevSlide();
-                restartAutoplay();
+                resetAutoSlide();
             }
         });
 
-        updateSlider();
-        startAutoplay();
+        updateSlidePosition();
+        updateIndicator();
+        startAutoSlide();
     }
 
     if (quickTop) {
