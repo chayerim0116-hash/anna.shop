@@ -540,7 +540,7 @@ body{
 .sub_ad_con .price-rate{
     font-size: 13px;
     font-weight: 700;
-    color: #d94a4a;
+    color: #ff9691;
     line-height: 1;
     text-decoration: none !important;
 }
@@ -735,7 +735,7 @@ body{
 .best .price-rate{
     font-size: 13px;
     font-weight: 700;
-    color: #d94a4a;
+    color: #ff9691;
     line-height: 1;
     text-decoration: none !important;
 }
@@ -880,20 +880,26 @@ body{
     right: -10px;
     top: -10px;
     z-index: 2;
-    width: 28px;
-    height: 28px;
+    width: 42px;
+    height: 42px;
     padding: 0;
-    border: 1px solid rgba(0,0,0,0.12);
+    border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255,255,255,0.95);
-    color: #666;
-    font-size: 16px;
-    font-weight: 600;
+    background: #ff9691;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400;
     line-height: 1;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: background 0.2s ease;
+}
+
+.layer-popup-close:hover{
+    background: #ff8a85;
 }
 
 @keyframes layerPopupFadeInUp{
@@ -1265,7 +1271,7 @@ body{
     height: 18px;
     padding: 0 4px;
     border-radius: 999px;
-    background: #111111;
+    background: #ff9691;
     color: #ffffff;
     font-size: 11px;
     font-weight: 700;
@@ -1438,7 +1444,7 @@ body{
     bottom: 32px;
     left: 50%;
     transform: translateX(-50%) translateY(12px);
-    background: rgba(0,0,0,0.78);
+    background: #ff9691;
     color: #ffffff;
     font-size: 14px;
     font-family: "Noto Sans KR", sans-serif;

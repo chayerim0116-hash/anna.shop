@@ -12,9 +12,9 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            background: #2f3138;
+            background: #ffffff;
             font-family: "Noto Sans KR", sans-serif;
-            color: #ffffff;
+            color: #222222;
         }
 
         .chat-page {
@@ -22,14 +22,14 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            background: #2f3138;
+            background: #ffffff;
         }
 
         /* 헤더 */
         .chat-header {
             height: 120px;
-            background: #2b2d34;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: #ffffff;
+            border-bottom: 1px solid #eeeeee;
             padding: 24px 32px;
             display: flex;
             align-items: center;
@@ -44,7 +44,7 @@
         }
 
         .chat-brand {
-            color: #ffffff;
+            color: #111111;
             font-size: 34px;
             font-weight: 800;
             margin-bottom: 8px;
@@ -52,7 +52,7 @@
         }
 
         .chat-response-info {
-            color: #b7bcc7;
+            color: #888888;
             font-size: 18px;
             font-weight: 400;
         }
@@ -64,23 +64,23 @@
         }
 
         .chat-header-icons span {
-            color: rgba(255,255,255,0.7);
+            color: #aaaaaa;
             font-size: 22px;
             cursor: pointer;
             user-select: none;
         }
 
         .chat-header-icons span:hover {
-            color: #ffffff;
+            color: #111111;
         }
 
         .btn-reset-chat {
             height: 34px;
             padding: 0 14px;
             border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.25);
+            border: 1px solid #dddddd;
             background: transparent;
-            color: rgba(255,255,255,0.65);
+            color: #888888;
             font-size: 13px;
             font-family: "Noto Sans KR", sans-serif;
             cursor: pointer;
@@ -88,8 +88,8 @@
         }
 
         .btn-reset-chat:hover {
-            border-color: rgba(255,255,255,0.5);
-            color: #ffffff;
+            border-color: #999999;
+            color: #111111;
         }
 
         /* 채팅 메시지 영역 */
@@ -100,7 +100,7 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
-            background: #2f3138;
+            background: #fafafa;
         }
 
         .chat-body::-webkit-scrollbar {
@@ -112,7 +112,7 @@
         }
 
         .chat-body::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.15);
+            background: #dddddd;
             border-radius: 2px;
         }
 
@@ -146,15 +146,15 @@
 
         .bot-name {
             font-size: 13px;
-            color: rgba(255,255,255,0.6);
+            color: #aaaaaa;
             font-weight: 400;
         }
 
         /* 봇 말풍선 */
         .bubble-bot {
             max-width: 520px;
-            background: #4a4b52;
-            color: #ffffff;
+            background: #fff3f2;
+            color: #222222;
             border-radius: 22px 22px 22px 4px;
             padding: 16px 20px;
             font-size: 18px;
@@ -165,8 +165,8 @@
         /* 초기 봇 말풍선 (더 큰 패딩) */
         .bubble-bot-welcome {
             max-width: 520px;
-            background: #4a4b52;
-            color: #ffffff;
+            background: #fff3f2;
+            color: #222222;
             border-radius: 24px;
             padding: 26px 30px;
             font-size: 22px;
@@ -180,9 +180,9 @@
             height: 58px;
             margin-top: 24px;
             border-radius: 14px;
-            border: 1px solid #4a78c8;
+            border: 1px solid #ff9691;
             background: transparent;
-            color: #4a78c8;
+            color: #ff9691;
             font-size: 20px;
             font-weight: 700;
             font-family: "Noto Sans KR", sans-serif;
@@ -191,7 +191,7 @@
         }
 
         .btn-notify:hover {
-            background: rgba(74, 120, 200, 0.1);
+            background: rgba(255, 150, 145, 0.08);
         }
 
         /* 사용자 메시지 행 */
@@ -203,8 +203,8 @@
         /* 사용자 말풍선 */
         .bubble-user {
             max-width: 520px;
-            background: #fee500;
-            color: #111111;
+            background: #ff9691;
+            color: #ffffff;
             border-radius: 22px 22px 4px 22px;
             padding: 16px 20px;
             font-size: 18px;
@@ -220,19 +220,19 @@
         }
 
         .typing-dots {
-            background: #4a4b52;
+            background: #fff3f2;
             border-radius: 22px 22px 22px 4px;
             padding: 14px 20px;
             font-size: 16px;
-            color: rgba(255,255,255,0.6);
+            color: #888888;
             font-style: italic;
         }
 
         /* 하단 입력 영역 */
         .chat-input-area {
             height: 110px;
-            background: #35373f;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            background: #ffffff;
+            border-top: 1px solid #eeeeee;
             display: flex;
             align-items: center;
             gap: 18px;
@@ -249,14 +249,14 @@
 
         .tool-icons span {
             font-size: 22px;
-            color: rgba(255,255,255,0.5);
+            color: #aaaaaa;
             cursor: pointer;
             user-select: none;
             line-height: 1;
         }
 
         .tool-icons span:hover {
-            color: rgba(255,255,255,0.8);
+            color: #111111;
         }
 
         .chat-textarea {
@@ -266,14 +266,14 @@
             border: none;
             outline: none;
             resize: none;
-            color: #ffffff;
+            color: #111111;
             font-size: 22px;
             font-family: "Noto Sans KR", sans-serif;
             line-height: 1.4;
         }
 
         .chat-textarea::placeholder {
-            color: rgba(255,255,255,0.3);
+            color: #aaaaaa;
         }
 
         .btn-send {
@@ -281,8 +281,8 @@
             height: 58px;
             border-radius: 14px;
             border: none;
-            background: #5a5c63;
-            color: #8b9098;
+            background: #f0f0f0;
+            color: #cccccc;
             font-size: 20px;
             font-weight: 600;
             font-family: "Noto Sans KR", sans-serif;
@@ -292,8 +292,8 @@
         }
 
         .btn-send.active {
-            background: #fee500;
-            color: #111111;
+            background: #ff9691;
+            color: #ffffff;
         }
 
         /* 모바일 */
