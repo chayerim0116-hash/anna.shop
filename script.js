@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var quickHideTimer;
     var slideCount = slides.length;
     var isTransitioning = false;
+    var openQuickView = null;
     var submenuData = {
         "오늘출발": ["PANTS", "TOP", "DRESS&SKIRT", "OUTER"],
         "MADE": ["A.MONMENT", "PANTS", "TOP", "DRESS&SKIRT"],
@@ -341,12 +342,12 @@ document.addEventListener("DOMContentLoaded", function () {
             var viewBtn = item.querySelector(".view-btn");
             var cartBtn = item.querySelector(".cart-btn");
 
-            /* 첫 번째 아이콘: 자세히보기 */
+            /* 첫 번째 아이콘: Quick View 오픈 */
             if (viewBtn) {
                 viewBtn.addEventListener("click", function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    alert("상품 상세 페이지 준비 중입니다.");
+                    if (openQuickView) openQuickView(item);
                 });
             }
 
@@ -551,8 +552,102 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /* ── Quick View Modal ── */
+    function initQuickViewModal() {
+        var overlay   = document.getElementById("qvOverlay");
+        var infoArea  = document.getElementById("qvInfoArea");
+        var closeBtn  = document.getElementById("qvClose");
+        var qvImage   = document.getElementById("qvImage");
+        var qvName    = document.getElementById("qvName");
+        var qvSale    = document.getElementById("qvSale");
+        var qvOriginal= document.getElementById("qvOriginal");
+        var qvRate    = document.getElementById("qvRate");
+        var qvBtnCart = document.getElementById("qvBtnCart");
+        var qvBtnBuy  = document.getElementById("qvBtnBuy");
+
+        if (!overlay) return;
+
+        function closeModal() {
+            overlay.classList.remove("is-open");
+            document.body.style.overflow = "";
+        }
+
+        openQuickView = function (li) {
+            var imgEl  = li.querySelector(".best_img_wrap > img");
+            var nameEl = li.querySelector("h4");
+            var saleEl = li.querySelector(".price-sale");
+            var origEl = li.querySelector(".price-original");
+            var rateEl = li.querySelector(".price-rate");
+
+            qvImage.src = imgEl ? imgEl.src : "";
+
+            qvName.textContent = (nameEl && nameEl.textContent.trim()) || "ANNA 상품";
+
+            var saleText = saleEl ? saleEl.textContent.trim() : "";
+            qvSale.textContent = saleText || "가격 정보 없음";
+
+            var origText = origEl ? origEl.textContent.trim() : "";
+            if (origText) {
+                qvOriginal.textContent = origText;
+                qvOriginal.style.display = "";
+            } else {
+                qvOriginal.textContent = "";
+                qvOriginal.style.display = "none";
+            }
+
+            var rateText = rateEl ? rateEl.textContent.trim() : "";
+            if (rateText) {
+                qvRate.textContent = rateText;
+                qvRate.style.display = "";
+            } else {
+                qvRate.textContent = "";
+                qvRate.style.display = "none";
+            }
+
+            if (infoArea) infoArea.scrollTop = 0;
+            overlay.classList.add("is-open");
+            document.body.style.overflow = "hidden";
+        };
+
+        closeBtn.addEventListener("click", closeModal);
+
+        overlay.addEventListener("click", function (e) {
+            if (e.target === overlay) closeModal();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && overlay.classList.contains("is-open")) closeModal();
+        });
+
+        qvBtnCart.addEventListener("click", function () {
+            var count = parseInt(localStorage.getItem("anna_cart_count") || "0", 10) + 1;
+            localStorage.setItem("anna_cart_count", String(count));
+            updateCartBadge();
+            showToast("장바구니에 담겼습니다.");
+        });
+
+        qvBtnBuy.addEventListener("click", function () {
+            alert("구매 기능은 준비 중입니다.");
+        });
+
+        document.querySelectorAll(".qv-color-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                document.querySelectorAll(".qv-color-btn").forEach(function (b) { b.classList.remove("active"); });
+                btn.classList.add("active");
+            });
+        });
+
+        document.querySelectorAll(".qv-size-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                document.querySelectorAll(".qv-size-btn").forEach(function (b) { b.classList.remove("active"); });
+                btn.classList.add("active");
+            });
+        });
+    }
+
     initHeaderScrollEffect();
     initCartCount();
+    initQuickViewModal();
     initBestProductHoverIcons();
     initSearchSuggest();
     initQuickMenuPopups();

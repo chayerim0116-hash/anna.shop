@@ -652,6 +652,83 @@
         <img src="popup.png" alt="이벤트 안내">
         <button type="button" class="layer-popup-close" aria-label="팝업 닫기">×</button>
     </div>
+    <!-- Quick View Modal -->
+    <div class="qv-overlay" id="qvOverlay" role="dialog" aria-modal="true" aria-label="상품 빠른 보기">
+        <div class="qv-modal" id="qvModal">
+            <button type="button" class="qv-close" id="qvClose" aria-label="닫기">&#215;</button>
+            <div class="qv-img-area">
+                <img src="" alt="상품 이미지" id="qvImage">
+            </div>
+            <div class="qv-info-area" id="qvInfoArea">
+                <p class="qv-sku">ANNA001</p>
+                <h2 class="qv-name" id="qvName">상품명</h2>
+                <div class="qv-badges">
+                    <span class="qv-badge">쿠폰할인</span>
+                    <span class="qv-badge">오늘출발</span>
+                    <span class="qv-badge">1+1할인</span>
+                </div>
+                <p class="qv-review-summary">리뷰 0건</p>
+                <div class="qv-price-row">
+                    <span class="qv-rate" id="qvRate"></span>
+                    <span class="qv-sale" id="qvSale"></span>
+                    <span class="qv-original" id="qvOriginal"></span>
+                </div>
+                <p class="qv-discount-text">최대 할인가로 구매 가능한 상품입니다.</p>
+                <div class="qv-coupon-box">
+                    <span>쿠폰 사용가</span>
+                    <span class="qv-coupon-price">0원</span>
+                </div>
+                <div class="qv-delivery">
+                    <div class="qv-delivery-row">
+                        <span class="qv-delivery-label">카드혜택</span>
+                        <span class="qv-delivery-val">무이자 혜택</span>
+                    </div>
+                    <div class="qv-delivery-row">
+                        <span class="qv-delivery-label">멤버십혜택</span>
+                        <span class="qv-delivery-val">등급별혜택보기</span>
+                    </div>
+                    <div class="qv-delivery-row">
+                        <span class="qv-delivery-label">배송예상</span>
+                        <span class="qv-delivery-val">오늘출발 가능 &nbsp;<span class="qv-delivery-date">06월 19일 금요일 도착</span></span>
+                    </div>
+                </div>
+                <div class="qv-kakao-bar">ANNA 카카오 채널 추가 시 3,000원 할인 쿠폰 지급</div>
+                <div class="qv-section">
+                    <p class="qv-option-label">색상</p>
+                    <div class="qv-color-list">
+                        <button type="button" class="qv-color-btn active" style="background:#f4eee8" aria-label="색상 1"></button>
+                        <button type="button" class="qv-color-btn" style="background:#e9e2cf" aria-label="색상 2"></button>
+                        <button type="button" class="qv-color-btn" style="background:#b8b8b8" aria-label="색상 3"></button>
+                        <button type="button" class="qv-color-btn" style="background:#111111" aria-label="색상 4"></button>
+                        <button type="button" class="qv-color-btn" style="background:#f8f8f8" aria-label="색상 5"></button>
+                        <button type="button" class="qv-color-btn" style="background:#f2d8d8" aria-label="색상 6"></button>
+                    </div>
+                </div>
+                <div class="qv-section">
+                    <div class="qv-size-header">
+                        <span class="qv-option-label">사이즈</span>
+                        <span class="qv-size-links"><a href="#none">내 사이즈 찾기</a> / <a href="#none">사이즈 추가요청</a></span>
+                    </div>
+                    <div class="qv-size-list">
+                        <button type="button" class="qv-size-btn active">Free</button>
+                    </div>
+                </div>
+                <div class="qv-total">
+                    <span>총금액</span>
+                    <span class="qv-total-price">0원</span>
+                </div>
+                <div class="qv-btn-row">
+                    <button type="button" class="qv-btn-cart" id="qvBtnCart">장바구니</button>
+                    <button type="button" class="qv-btn-buy" id="qvBtnBuy">구매하기</button>
+                </div>
+                <div class="qv-review">
+                    <p class="qv-review-title">REVIEW</p>
+                    <p class="qv-review-empty">아직 등록된 리뷰가 없습니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
