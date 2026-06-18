@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function startAutoSlide() {
             if (autoSlideTimer) clearInterval(autoSlideTimer);
-            autoSlideTimer = setInterval(nextSlide, 3000);
+            autoSlideTimer = setInterval(nextSlide, 2000);
         }
 
         function resetAutoSlide() {
