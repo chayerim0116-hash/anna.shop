@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var slideCount = slides.length;
     var isTransitioning = false;
     var openQuickView = null;
+    var transitionEndTimer;
     var submenuData = {
         "오늘출발": ["PANTS", "TOP", "DRESS&SKIRT", "OUTER"],
         "MADE": ["A.MONMENT", "PANTS", "TOP", "DRESS&SKIRT"],
@@ -47,6 +48,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (isTransitioning) return;
 
         isTransitioning = true;
+        clearTimeout(transitionEndTimer);
+        transitionEndTimer = setTimeout(function () {
+            if (isTransitioning) {
+                isTransitioning = false;
+                if (currentIndex === slideCount) {
+                    track.style.transition = "none";
+                    currentIndex = 0;
+                    updateSlider();
+                }
+            }
+        }, 800);
+
         currentIndex = index;
         track.style.transition = "transform 0.6s ease-in-out";
         updateSlider();
@@ -144,13 +157,17 @@ document.addEventListener("DOMContentLoaded", function () {
         firstClone.setAttribute("aria-hidden", "true");
         track.appendChild(firstClone);
 
-        track.addEventListener("transitionend", function () {
+        track.addEventListener("transitionend", function (e) {
+            /* 자식 요소의 transitionend 버블링 무시 */
+            if (e.target !== track || e.propertyName !== "transform") return;
+
+            clearTimeout(transitionEndTimer);
+
             if (currentIndex === slideCount) {
                 track.style.transition = "none";
                 currentIndex = 0;
                 updateSlider();
                 track.offsetHeight;
-                track.style.transition = "transform 0.6s ease-in-out";
             }
 
             isTransitioning = false;
